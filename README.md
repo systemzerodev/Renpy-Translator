@@ -4,7 +4,7 @@ RenPy Translator is a tool designed to simplify the translation workflow for **R
 
 The tool scans Ren'Py script files (`.rpy`), extracts dialogue text, and prepares it for translation and patch generation.
 
-This project aims to provide a simple and efficient way to create translation patches for Ren'Py games.
+The goal of this project is to make creating translation patches for Ren'Py games easier and more accessible.
 
 ---
 
@@ -14,11 +14,44 @@ Current and planned features:
 
 - Scan Ren'Py game directories
 - Detect `.rpy` script files
-- Extract dialogue text from scripts
+- Extract dialogue text
 - Store dialogue data for translation
 - Translation editor interface _(planned)_
-- Translation patch generator _(planned)_
+- Patch generation system _(planned)_
 - Auto translation support _(future)_
+
+---
+
+# Architecture
+
+The system is designed as a modular pipeline.
+
+```mermaid
+flowchart TD
+
+A[Ren'Py Game Folder]
+B[Scanner Module]
+C[Parser Module]
+D[Dialogue Model]
+E[Translation Interface]
+F[Patch Generator]
+G[Translated Patch]
+
+A --> B
+B --> C
+C --> D
+D --> E
+E --> F
+F --> G
+```
+
+Pipeline overview:
+
+1. The **scanner** locates `.rpy` script files.
+2. The **parser** extracts dialogue from the scripts.
+3. Dialogue data is stored using structured **models**.
+4. The **UI editor** allows translators to modify text.
+5. A **patch generator** builds the final translation patch.
 
 ---
 
@@ -27,10 +60,10 @@ Current and planned features:
 ```
 renpy-translator
 │
-├─ core/                 # Core engine
-│   ├─ parser.py         # Extract dialogue from scripts
-│   ├─ scanner.py        # Locate .rpy files
-│   └─ models.py         # Dialogue data structures
+├─ core/                 # Core translation engine
+│   ├─ parser.py
+│   ├─ scanner.py
+│   └─ models.py
 │
 ├─ ui/                   # User interface
 │   └─ app.py
@@ -42,7 +75,7 @@ renpy-translator
 │   ├─ architecture.md
 │   └─ parser_design.md
 │
-├─ assets/               # Static resources (icons, images)
+├─ assets/               # Icons and resources
 │
 ├─ .pre-commit-config.yaml
 ├─ .gitignore
@@ -53,47 +86,15 @@ renpy-translator
 
 ---
 
-# Architecture Overview
-
-The system is designed as a modular pipeline:
-
-```
-Ren'Py Game
-     │
-     ▼
-Scanner
-(find .rpy files)
-     │
-     ▼
-Parser
-(extract dialogue)
-     │
-     ▼
-Dialogue Models
-(store translation data)
-     │
-     ▼
-UI Editor
-(translation interface)
-     │
-     ▼
-Patch Generator
-(create translation patch)
-```
-
-The goal is to keep **core logic independent from the user interface**, making the project easier to maintain and extend.
-
----
-
 # Installation
 
 Clone the repository:
 
 ```
-git clone https://github.com/systemzerodev/Renpy-Translator.git
+git clone https://github.com/YOUR_USERNAME/renpy-translator.git
 ```
 
-Navigate into the project directory:
+Navigate to the project folder:
 
 ```
 cd renpy-translator
@@ -105,7 +106,7 @@ Create a virtual environment:
 python -m venv venv
 ```
 
-Activate the virtual environment:
+Activate the environment.
 
 Windows:
 
@@ -129,7 +130,7 @@ pip install -r requirements.txt
 
 # Development Setup
 
-This project uses **pre-commit hooks** to enforce consistent code formatting.
+This project uses **pre-commit hooks** to ensure consistent code formatting.
 
 Install hooks:
 
@@ -143,10 +144,10 @@ Run checks manually:
 pre-commit run --all-files
 ```
 
-Tools used:
+Development tools used:
 
 - **Black** → code formatter
-- **Ruff** → linter
+- **Ruff** → Python linter
 - **isort** → import sorting
 
 ---
@@ -159,31 +160,31 @@ Run the application entry point:
 python ui/app.py
 ```
 
-Example output:
+Current output:
 
 ```
 RenPy Translator UI starting...
 ```
 
-Currently this is a placeholder while the core engine is under development.
+This is currently a placeholder while the core engine is under development.
 
 ---
 
 # Roadmap
 
-Planned development stages:
+Planned development phases:
 
 ### Phase 1 — Core Engine
 
-- Implement `.rpy` file scanner
+- Implement `.rpy` scanner
 - Build dialogue parser
-- Design translation data model
+- Design dialogue data models
 
 ### Phase 2 — Translation Workflow
 
-- Dialogue extraction
-- Translation data storage
-- Patch generator
+- Extract dialogue from scripts
+- Manage translation data
+- Generate Ren'Py translation patches
 
 ### Phase 3 — User Interface
 
@@ -192,9 +193,9 @@ Planned development stages:
 
 ### Phase 4 — Advanced Features
 
-- Auto translation support
+- Automatic translation support
 - Translation memory
-- Better script parsing
+- Improved parser compatibility
 
 ---
 
@@ -202,14 +203,14 @@ Planned development stages:
 
 Contributions are welcome.
 
-Steps:
+If you'd like to contribute:
 
 1. Fork the repository
 2. Create a new branch
 3. Commit your changes
-4. Open a Pull Request
+4. Submit a Pull Request
 
-Issues and feature requests are also appreciated.
+You can also open issues for bug reports or feature requests.
 
 ---
 
