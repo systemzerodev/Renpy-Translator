@@ -90,7 +90,7 @@ The goal is to keep **core logic independent from the user interface**, making t
 Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/renpy-translator.git
+git clone https://github.com/systemzerodev/Renpy-Translator.git
 ```
 
 Navigate into the project directory:
