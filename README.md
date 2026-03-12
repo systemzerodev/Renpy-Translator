@@ -1,5 +1,11 @@
 # RenPy Translator
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Code Style](https://img.shields.io/badge/code%20style-black-000000)
+![Linter](https://img.shields.io/badge/linter-ruff-red)
+![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen)
+
 RenPy Translator is a tool designed to simplify the translation workflow for **Ren'Py visual novel games**.
 
 The tool scans Ren'Py script files (`.rpy`), extracts dialogue text, and prepares it for translation and patch generation.
