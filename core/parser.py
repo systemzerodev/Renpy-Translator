@@ -1,28 +1,43 @@
 """
 RenPy script parser
 
-Responsible for scanning .rpy files and extracting dialogue text.
+Responsible for reading .rpy files and extracting dialogue lines.
 """
 
-import os
 import re
 
-
-def find_rpy_files(game_folder: str):
-    """Find all .rpy files in the Ren'Py game directory."""
-    rpy_files = []
-
-    for root, dirs, files in os.walk(game_folder):
-        for file in files:
-            if file.endswith(".rpy"):
-                rpy_files.append(os.path.join(root, file))
-
-    return rpy_files
+from core.models import DialogueEntry
 
 
-def extract_dialogue(line: str):
-    """Extract dialogue text inside quotes."""
-    match = re.search(r'"(.*?)"', line)
-    if match:
-        return match.group(1)
-    return None
+class RenpyParser:
+    def __init__(self):
+        self.dialogue_id = 0
+
+    def parse_file(self, filepath):
+        dialogues = []
+
+        with open(filepath, "r", encoding="utf-8") as file:
+            lines = file.readlines()
+
+        for line_number, line in enumerate(lines, start=1):
+            # pattern: speaker "text"
+            match = re.match(r'(\w+)\s+"(.+)"', line.strip())
+
+            if match:
+                speaker = match.group(1)
+                text = match.group(2)
+
+                self.dialogue_id += 1
+
+                dialogue = DialogueEntry(
+                    id=self.dialogue_id,
+                    speaker=speaker,
+                    original_text=text,
+                    translated_text="",
+                    filename=filepath,
+                    line_number=line_number,
+                )
+
+                dialogues.append(dialogue)
+
+        return dialogues
