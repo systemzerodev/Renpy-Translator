@@ -223,3 +223,6 @@ __pycache__/
 Thumbs.db
 
 Game_dummy/
+
+#Generated translation files
+translation_project.json
