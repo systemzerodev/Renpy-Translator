@@ -222,6 +222,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# local testing game
 Game_dummy/
 
 #Generated translation files
